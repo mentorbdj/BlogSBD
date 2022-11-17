@@ -1,3 +1,14 @@
+<?php
+    // TODO 1 MENGAMBIL DATA DARI TABLE POST DB BLOG
+    $sql = "SELECT * FROM post LEFT JOIN user ON post.authorId = user.id Order By post.publishedAt DESC";
+    $query = $koneksi->query($sql);
+?>
+
+<?php
+    // TODO 2 Extract Data Dari variable $query
+    while ($result = $query->fetch_array()) : 
+?>
+
 <article
     class="card card-full hover-a py-4 post-1305 post type-post status-publish format-video has-post-thumbnail hentry category-video tag-science tag-starvation post_format-post-format-video"
     id="post-1305">
@@ -27,23 +38,34 @@
         </div>
 
         <!--content-->
+        <!-- TODO 3 TAMPILKAN DATA SESUAI DENGAN DATABASE -->
         <div class="col-sm-6 col-md-12 col-lg-6">
             <div class="card-body pt-3 pt-sm-0 pt-md-3 pt-lg-0">
                 <h3 class="card-title h2 h3-sm h2-md">
-                    <a href="https://demo.bootstrap.news/boxed/2019/06/the-man-who-saved-millions-from-starvation/">The
-                        man who saved millions from starvation</a>
+                    <a href="https://demo.bootstrap.news/boxed/2019/06/the-man-who-saved-millions-from-starvation/">
+                        <?= $result['title']; ?>
+                    </a>
                 </h3>
                 <div class="card-text mb-2 text-muted small">
+
                     <span class="fw-bold d-none d-sm-inline me-1">
-                        <a href="https://demo.bootstrap.news/boxed/author/aribudin/" title="Posts by aribudin"
-                            rel="author">aribudin</a> </span>
-                    <time class="news-date" datetime="2019-06-16T14:10:06+00:00">June
-                        16, 2019</time>
+                        <a href="https://demo.bootstrap.news/boxed/author/<?= $result['firstName']; ?>" title="Posts by <?= $result['firstName']; ?>" rel="author">
+                            <?= $result['firstName']; ?>
+                        </a>
+                    </span>
+
+                    <time class="news-date" datetime="<?= $result['publishedAt']; ?>">
+                        <?= $result['publishedAt']; ?>
+                    </time>
                 </div>
-                <p class="card-text">Even the all-powerful Pointing has no control about
-                    the blind texts it is an almost unorthographic life One day however
-                    a small line. lorem Ipsum is simply dummy text of the...</p>
+                <p class="card-text">
+                    <?= $result['summary']; ?>
+                </p>
             </div>
         </div>
     </div>
 </article>
+
+<?php
+    endwhile;
+?>

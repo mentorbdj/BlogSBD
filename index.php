@@ -1,4 +1,9 @@
-<?php include "partials/header.php"; ?>
+<?php 
+
+    include "config/database.php";
+    include "partials/header.php";
+
+?>
 
 <body class="home blog custom-background wp-custom-logo boxed font-family hfeed">
 
@@ -12,7 +17,6 @@
     <div class="bg-image"></div>
     <!-- ========== WRAPPER ========== -->
     <div class="wrapper">
-
 
         <?php include "partials/logo.php"; ?>
 
